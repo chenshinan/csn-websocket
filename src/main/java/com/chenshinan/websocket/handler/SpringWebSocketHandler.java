@@ -36,11 +36,11 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // TODO Auto-generated method stub
-        System.out.println("connect to the websocket success......当前数量:" + users.size());
         users.add(session);
+        System.out.println("socket连接成功，当前数量:" + users.size());
         //这块会实现自己业务，比如，当用户登录后，会把离线消息推送给用户
-        //TextMessage returnMessage = new TextMessage("你将收到的离线");
-        //session.sendMessage(returnMessage);
+        TextMessage returnMessage = new TextMessage("你将收到的离线");
+        session.sendMessage(returnMessage);
     }
 
     /**
@@ -60,6 +60,8 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
      */
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        System.out.println("收到"+message.getPayload());
+        sendMessageToUsers(message);
         super.handleTextMessage(session, message);
     }
 

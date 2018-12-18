@@ -15,13 +15,13 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
  * @since 2018/12/17
  */
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @EnableWebSocket
 public class SpringWebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler(), "/websocket/socketServer.do").addInterceptors(new SpringWebSocketHandlerInterceptor());
-        registry.addHandler(webSocketHandler(), "/sockjs/socketServer.do").addInterceptors(new SpringWebSocketHandlerInterceptor()).withSockJS();
+        registry.addHandler(webSocketHandler(), "/websocket/socketServer").addInterceptors(new SpringWebSocketHandlerInterceptor());
+        registry.addHandler(webSocketHandler(), "/sockjs/socketServer").addInterceptors(new SpringWebSocketHandlerInterceptor()).withSockJS();
     }
 
     @Bean

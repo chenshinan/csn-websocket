@@ -1,5 +1,11 @@
 server:
-  port: 8080
+  port: 8085
+  servlet:
+    context-path: '/demo'
 spring:
   application:
     name: csn-saga-base
+  mvc:
+    view:
+      prefix: '/WEB-INF/'
+      suffix: '.jsp'
